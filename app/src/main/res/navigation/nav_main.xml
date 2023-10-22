@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/login">
+
+    <fragment
+        android:id="@+id/login"
+        android:name="com.tttn.fragment_admin.login_fragment"
+        android:label="CyoFragment">
+
+    </fragment>
+    <!---
+    <action
+            android:id="@+id/action_cyo_to_loginFragment"
+            app:destination="@id/loginFragment" />
+   <fragment
+       android:id="@+id/loginFragment"
+       android:name="com.android.fragment_teacher.LoginFragment"
+       android:label="LoginFragm
+       ent">
+       <argument
+           android:name="role"
+           app:argType="string" />
+       <action
+           android:id="@+id/action_loginFragment_to_mainFragment"
+           app:destination="@id/teacherMainFragment" />
+       <action
+           android:id="@+id/action_loginFragment_to_stuMainFragment"
+           app:destination="@id/stuMainFragment" />
+   </fragment>
+   <fragment
+       android:id="@+id/teacherMainFragment"
+       android:name="com.android.fragment_teacher.TeacherMainFragment"
+       android:label="TeachderMainFragment">
+       <action
+           android:id="@+id/action_teacherMainFragment_to_addStudentFragment"
+           app:destination="@id/addStudentFragment" />
+       <action
+           android:id="@+id/action_teacherMainFragment_to_attendanceFragment"
+           app:destination="@id/attendanceFragment" />
+       <action
+           android:id="@+id/action_teacherMainFragment_to_ListhomeworkFragment"
+           app:destination="@id/listHomeworkFragment" />
+   </fragment>
+   <fragment
+       android:id="@+id/stuMainFragment"
+       android:name="com.android.fragment_student.StuMainFragment"
+       android:label="MainFragment">
+       <argument
+           android:name="phone"
+           app:argType="string" />
+       <action
+           android:id="@+id/action_stuMainFragment_to_sAttendanceFragment"
+           app:destination="@id/sAttendanceFragment" />
+       <action
+           android:id="@+id/action_stuMainFragment_to_shomeworkFragment"
+           app:destination="@id/listStuHomeworkFragment" />
+   </fragment>
+   <fragment
+       android:id="@+id/addStudentFragment"
+       android:name="com.android.fragment_teacher.AddAccountFragment"
+       android:label="AddFragment">
+   </fragment>
+   <fragment
+       android:id="@+id/homeworkFragment"
+       android:name="com.android.fragment_teacher.HomeworkFragment"
+       android:label="HomeworkFragment">
+   </fragment>
+   <fragment
+       android:id="@+id/attendanceFragment"
+       android:name="com.android.fragment_teacher.AttendanceFragment"
+       android:label="AttendanceFragment">
+   </fragment>
+   <fragment
+       android:id="@+id/answerFragment"
+       android:name="com.android.fragment_student.AnswerFragment"
+       android:label="AnswerFragment">
+       <argument
+           android:name="name"
+           app:argType="string" />
+       <argument
+           android:name="link"
+           app:argType="string" />
+       <argument
+           android:name="phone"
+           app:argType="string" />
+   </fragment>
+   <fragment
+       android:id="@+id/studetailHomework"
+       android:name="com.android.fragment_student.StuDetailHWFragment"
+       android:label="studetailHWFragment">
+       <argument
+           android:name="name"
+           app:argType="string" />
+       <argument
+           android:name="link"
+           app:argType="string" />
+   </fragment>
+   <fragment
+       android:id="@+id/listStuHomeworkFragment"
+       android:name="com.android.fragment_student.SHomeworkFragment"
+       android:label="listStuHomeworkFragment">
+       <argument
+           android:name="phone"
+           app:argType="string" />
+       <action
+           android:id="@+id/action_teacherMainFragment_to_detailhomeworkFragment"
+           app:destination="@id/studetailHomework" />
+       <action
+           android:id="@+id/action_listHomeworkFragment_to_answerFragment"
+           app:destination="@id/answerFragment" />
+
+   </fragment>
+   <fragment
+       android:id="@+id/sAttendanceFragment"
+       android:name="com.android.fragment_student.SAttendanceFragment"
+       android:label="SAttendanceFragment">
+   </fragment>
+   <fragment
+       android:id="@+id/detailHomework"
+       android:name="com.android.fragment_teacher.DetailHWFragment"
+       android:label="detailHWFragment">
+       <argument
+           android:name="name"
+           app:argType="string" />
+       <argument
+           android:name="link"
+           app:argType="string" />
+   </fragment>
+   <fragment
+       android:id="@+id/listHomeworkFragment"
+       android:name="com.android.fragment_teacher.ListHomework"
+       android:label="SAttendanceFragment">
+       <action
+           android:id="@+id/action_teacherMainFragment_to_homeworkFragment"
+           app:destination="@id/homeworkFragment" />
+       <action
+           android:id="@+id/action_teacherMainFragment_to_detailhomeworkFragment"
+           app:destination="@id/detailHomework" />
+   </fragment> -->
+</navigation>
