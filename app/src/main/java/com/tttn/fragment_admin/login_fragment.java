@@ -69,14 +69,20 @@ public class login_fragment  extends Fragment {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
+
                                     FirebaseUser user = mAuth.getCurrentUser();
-                                    Toast.makeText(requireContext(), "ddang nhapj thanhf coong",
+                                    Toast.makeText(requireContext(), "Đăng nhập thành công",
                                             Toast.LENGTH_SHORT).show();
-                                    System.out.println("ddang nhapj thanhf coong");
+                                    if(eusername== "admin@email.com")
+                                    {
+
+                                    }
+                                     else{
+                                        NavDirections action = login_fragmentDirections.actionLoginFragmentToUsermainFragment(eusername);
+                                        Navigation.findNavController(view).navigate(action);
+                                    }
                                 } else {
-                                    // If sign in fails, display a message to the user.
-                                    Toast.makeText(requireContext(), "Authentication failed.",
+                                    Toast.makeText(requireContext(), "Đăng nhập không thành công, vui lòng kiểm tra lại email, password",
                                             Toast.LENGTH_SHORT).show();
                                 }
                             }

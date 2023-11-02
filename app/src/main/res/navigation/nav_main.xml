@@ -7,18 +7,39 @@
     <fragment
         android:id="@+id/login"
         android:name="com.tttn.fragment_admin.login_fragment"
-        android:label="CyoFragment">
+        android:label="LoginFragment">
+        <action
+            android:id="@+id/action_loginFragment_to_usermainFragment"
+            app:destination="@id/UserMainFragment" />
 
     </fragment>
+
+    <fragment
+        android:id="@+id/UserMainFragment"
+        android:name="com.tttn.fragment_user.user_home"
+        android:label="UserMainFragment">
+        <argument
+            android:name="eusername"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_mainuser_to_checkinFragment"
+            app:destination="@id/checkinFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/checkinFragment"
+        android:name="com.tttn.fragment_user.CheckinFragment"
+        android:label="CheckinFragment">
+        <argument
+            android:name="eusername"
+            app:argType="string" />
+    </fragment>
     <!---
-    <action
-            android:id="@+id/action_cyo_to_loginFragment"
-            app:destination="@id/loginFragment" />
    <fragment
        android:id="@+id/loginFragment"
        android:name="com.android.fragment_teacher.LoginFragment"
-       android:label="LoginFragm
-       ent">
+       android:label="LoginFragment">
        <argument
            android:name="role"
            app:argType="string" />
