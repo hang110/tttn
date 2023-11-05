@@ -29,6 +29,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.tttn.R;
 
 
@@ -37,6 +41,7 @@ public class login_fragment  extends Fragment {
      private  EditText username, password;
      private   Button loginButton;
      private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private String eusername, epass;
     @Nullable
@@ -78,8 +83,19 @@ public class login_fragment  extends Fragment {
 
                                     }
                                      else{
-                                        NavDirections action = login_fragmentDirections.actionLoginFragmentToUsermainFragment(eusername);
-                                        Navigation.findNavController(view).navigate(action);
+                                         String userID = user.getUid();
+                                        Query query = db.collection("person")
+                                                .whereEqualTo("loginID", userID);
+                                        query.get()
+                                                .addOnSuccessListener(queryDocumentSnapshots -> {
+                                                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                                                        String personID = document.getId();
+                                                        NavDirections action = login_fragmentDirections.actionLoginFragmentToUsermainFragment(personID);
+                                                        Navigation.findNavController(view).navigate(action);
+                                                    }
+                                                })
+                                                .addOnFailureListener(e -> {
+                                                });
                                     }
                                 } else {
                                     Toast.makeText(requireContext(), "Đăng nhập không thành công, vui lòng kiểm tra lại email, password",

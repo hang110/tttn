@@ -33,12 +33,12 @@ public class user_home extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         chamcong= view.findViewById(R.id.Chamcong);
         dklich= view.findViewById(R.id.DKLich);
-        String phone = CheckinFragmentArgs.fromBundle(getArguments()).getEusername();
+        String userID = CheckinFragmentArgs.fromBundle(getArguments()).getUserID();
 
         chamcong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavDirections action = user_homeDirections.actionMainuserToCheckinFragment(phone);
+                NavDirections action = user_homeDirections.actionMainuserToCheckinFragment(userID);
                 Navigation.findNavController(view).navigate(action);
             }
         });
