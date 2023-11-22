@@ -2,18 +2,33 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
-    android:background="@drawable/login"
-    tools:context=".MainActivity">
+    android:background="@drawable/img">
+    <TextView
+        android:id="@+id/helloadmin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello bdjhfbwkebfiu"
+        android:layout_marginTop="50dp"
+        android:textSize="30dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_marginLeft="20dp"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Have a good day!"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:layout_marginLeft="20dp"/>
     <androidx.cardview.widget.CardView
-        android:layout_width="420dp"
-        android:layout_height="544dp"
-        android:layout_marginTop="200dp"
+        android:layout_width="match_parent"
+        android:layout_height="1000dp"
+        android:layout_marginTop="60dp"
         app:cardCornerRadius="30dp"
         app:cardElevation="20dp"
         android:background="@drawable/custom_edittext">
@@ -39,36 +54,37 @@
             android:layout_marginTop="30dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="67dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_weight="1"
-                >
+                android:orientation="vertical">
+
                 <androidx.cardview.widget.CardView
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="20dp"
+                    android:layout_gravity="center"
                     android:background="@color/purple"
-                    android:layout_gravity="center">
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="20dp">
+
                     <ImageButton
+                        android:id="@+id/DKLich"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:background="@color/purple"
-                        android:id="@+id/DKLich"
-                        android:src="@drawable/ic_baseline_calendar_month_24"
-                        android:scaleType="fitXY"
                         android:layout_gravity="center"
-                        />
+                        android:background="@color/purple"
+                        android:contentDescription="Descriptive label for screen readers"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_baseline_calendar_month_24" />
                 </androidx.cardview.widget.CardView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Đăng ký lịch  làm"
-                    android:layout_marginTop="5dp"
                     android:layout_gravity="center"
-                    android:textColor="@color/black"/>
+                    android:layout_marginTop="5dp"
+                    android:text="Đăng ký lịch  làm"
+                    android:textColor="@color/black" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -91,6 +107,7 @@
                         android:src="@drawable/ic_baseline_person_pin_circle_24"
                         android:scaleType="fitXY"
                         android:layout_gravity="center"
+                        android:contentDescription="Descriptive label for screen readers"
                         />
                 </androidx.cardview.widget.CardView>
 
@@ -102,6 +119,41 @@
                     android:textColor="@color/black"
                     android:layout_gravity="center"/>
             </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            >
+            <androidx.cardview.widget.CardView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="20dp"
+                android:background="@color/purple"
+                android:layout_gravity="center">
+                <ImageButton
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@color/purple"
+                    android:id="@+id/Exit"
+                    android:src="@drawable/ic_baseline_exit_to_app_24"
+                    android:scaleType="fitXY"
+                    android:layout_gravity="center"
+                    android:contentDescription="Descriptive label for screen readers"
+                    />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Đăng xuất"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center"
+                android:textColor="@color/black"/>
         </LinearLayout>
         </LinearLayout>
 

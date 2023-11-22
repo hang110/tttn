@@ -1,5 +1,6 @@
 package com.tttn.fragment_admin;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,6 +34,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.tttn.DataManager;
 import com.tttn.R;
 
 
@@ -41,7 +43,7 @@ public class login_fragment  extends Fragment {
      private  EditText username, password;
      private   Button loginButton;
      private FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    OnBackPressedCallback callback;
 
     private String eusername, epass;
     @Nullable
@@ -74,7 +76,6 @@ public class login_fragment  extends Fragment {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     Toast.makeText(requireContext(), "Đăng nhập thành công",
                                             Toast.LENGTH_SHORT).show();
@@ -84,18 +85,9 @@ public class login_fragment  extends Fragment {
                                     }
                                      else{
                                          String userID = user.getUid();
-                                        Query query = db.collection("person")
-                                                .whereEqualTo("loginID", userID);
-                                        query.get()
-                                                .addOnSuccessListener(queryDocumentSnapshots -> {
-                                                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                                                        String personID = document.getId();
-                                                        NavDirections action = login_fragmentDirections.actionLoginFragmentToUsermainFragment(personID);
-                                                        Navigation.findNavController(view).navigate(action);
-                                                    }
-                                                })
-                                                .addOnFailureListener(e -> {
-                                                });
+                                        DataManager.getInstance().SetIdUser(userID);
+                                        NavDirections action = login_fragmentDirections.actionLoginFragmentToUsermainFragment();
+                                        Navigation.findNavController(view).navigate(action);
                                     }
                                 } else {
                                     Toast.makeText(requireContext(), "Đăng nhập không thành công, vui lòng kiểm tra lại email, password",
@@ -106,6 +98,22 @@ public class login_fragment  extends Fragment {
                         );
             }
         });
+    }
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+            }
+        };
+
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
+
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        callback.remove();
     }
 
 

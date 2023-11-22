@@ -6,11 +6,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -21,7 +25,8 @@ import androidx.navigation.Navigation;
 import com.tttn.R;
 public class user_home extends Fragment {
     private static final int pic_id = 123;
-    private ImageButton chamcong, dklich;
+    private ImageButton chamcong, dklich, exit;
+    OnBackPressedCallback callback;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -33,14 +38,44 @@ public class user_home extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         chamcong= view.findViewById(R.id.Chamcong);
         dklich= view.findViewById(R.id.DKLich);
-        String userID = CheckinFragmentArgs.fromBundle(getArguments()).getUserID();
-
+        exit = view.findViewById(R.id.Exit);
         chamcong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavDirections action = user_homeDirections.actionMainuserToCheckinFragment(userID);
+                NavDirections action = user_homeDirections.actionMainuserToCheckinFragment();
                 Navigation.findNavController(view).navigate(action);
             }
         });
+        dklich.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavDirections action = user_homeDirections.actionSchedule();
+                Navigation.findNavController(view).navigate(action);
+            }
+        });
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavDirections action = user_homeDirections.actionBack();
+                Navigation.findNavController(view).navigate(action);
+            }
+        });
+    }
+
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+            }
+        };
+
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
+
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        callback.remove();
     }
 }

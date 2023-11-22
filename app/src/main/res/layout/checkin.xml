@@ -13,7 +13,7 @@
         >
         <ImageButton
             android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_height="48dp"
             android:id="@+id/backbt"
             android:src="@drawable/ic_baseline_arrow_back_ios_24"
             android:background="@color/white"
@@ -34,7 +34,7 @@
         <ImageButton
             android:layout_weight="3"
             android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_height="48dp"
             android:id="@+id/history"
             android:src="@drawable/ic_baseline_history_24"
             android:layout_gravity="center"
