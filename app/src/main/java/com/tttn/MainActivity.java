@@ -15,21 +15,4 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.mymenu,menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch(item.getItemId()){
-            case R.id.mFile:
-                Toast.makeText(this, "test", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.mExit:
-                System.exit(0);
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }

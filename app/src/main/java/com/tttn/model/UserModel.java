@@ -2,15 +2,17 @@ package com.tttn.model;
 
 public class UserModel {
     String address, name, tele, idUser;
+    int luong;
 
     public UserModel() {
     }
 
-    public UserModel(String address, String name, String tele, String idUser) {
+    public UserModel(String address, String name, String tele, String idUser, int luong) {
         this.address = address;
         this.name = name;
         this.tele = tele;
         this.idUser = idUser;
+        this.luong=luong;
     }
 
     public String getAddress() {
@@ -43,5 +45,13 @@ public class UserModel {
 
     public void setIdUser(String idUser) {
         this.idUser = idUser;
+    }
+
+    public int getLuong() {
+        return luong;
+    }
+
+    public void setLuong(int luong) {
+        this.luong = luong;
     }
 }

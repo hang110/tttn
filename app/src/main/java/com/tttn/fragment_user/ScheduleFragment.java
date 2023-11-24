@@ -75,7 +75,7 @@ public class ScheduleFragment extends Fragment {
                         progressBar.setVisibility(View.GONE);
                         adapter.setList(model);
                     }
-                }, 2000);
+                }, 1000);
 
                 LinearLayoutManager manager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
                 recyclerView.setLayoutManager(manager);

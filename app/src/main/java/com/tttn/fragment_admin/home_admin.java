@@ -16,7 +16,6 @@ import androidx.navigation.Navigation;
 
 import com.tttn.R;
 public class home_admin extends Fragment {
-    private static final int pic_id = 123;
     private ImageButton qlCong, qlLichlam, exit;
     OnBackPressedCallback callback;
     @Nullable
@@ -30,7 +29,7 @@ public class home_admin extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         qlCong= view.findViewById(R.id.qlCong);
         qlLichlam= view.findViewById(R.id.qlLich);
-        exit = view.findViewById(R.id.Exit);
+        exit = view.findViewById(R.id.Exit_admin);
         qlCong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

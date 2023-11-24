@@ -184,29 +184,22 @@ public class DataManager {
             }
         });
     }
-    public void getAllLichlam(String date, int caID, LichlamCallback callback) {
-        List<LichLamModel> lmd = new ArrayList<>();
-        Query query = db.collection("lichlam").whereEqualTo("caID", caID)
-                .whereEqualTo("workday", date);
-        query.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                QuerySnapshot querySnapshot = task.getResult();
-                if (!querySnapshot.isEmpty()) {
 
-                    for (QueryDocumentSnapshot document : querySnapshot) {
-                        LichLamModel model = document.toObject(LichLamModel.class);
-                        DebugCustom(model.getWorkday());
-                        lmd.add(model);
+    public void getUser(UserCallback callback){
+        UserModel x = new UserModel();
+        db.collection("user").whereEqualTo("idUser", idUser)
+                .get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        QuerySnapshot querySnapshot = task.getResult();
+                        if (!querySnapshot.isEmpty()) {
+                            UserModel model = querySnapshot.getDocuments().get(0).toObject(UserModel.class);
+                            callback.onSuccess(model, querySnapshot.getDocuments().get(0).getId());
+                        } else {
+                            callback.onSuccess(x,"");
+                        }
+                    } else {
+                        callback.onFailure(task.getException());
                     }
-                    callback.onSuccess(lmd);
-                } else {
-
-                    callback.onSuccess(lmd);
-                }
-            } else {
-                // Xử lý lỗi
-                callback.onFailure(task.getException());
-            }
-        });
+                });
     }
 }

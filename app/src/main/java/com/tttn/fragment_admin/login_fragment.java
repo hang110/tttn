@@ -79,9 +79,10 @@ public class login_fragment  extends Fragment {
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     Toast.makeText(requireContext(), "Đăng nhập thành công",
                                             Toast.LENGTH_SHORT).show();
-                                    if(eusername== "admin@email.com")
+                                    if(eusername.equals("admin@localhost.com") )
                                     {
-
+                                        NavDirections action = login_fragmentDirections.actionLoginFragmentToAdminmainFragment();
+                                        Navigation.findNavController(view).navigate(action);
                                     }
                                      else{
                                          String userID = user.getUid();
