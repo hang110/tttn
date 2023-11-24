@@ -16,7 +16,17 @@
             app:destination="@id/AdminMainFragment" />
 
     </fragment>
-
+    <fragment
+        android:id="@+id/ManagerSalaryFragment"
+        android:name="com.tttn.fragment_admin.ManagerSalary"
+        android:label="managerSalaryFragment">
+        <action
+            android:id="@+id/action_back"
+            app:destination="@id/AdminMainFragment" />
+        <action
+            android:id="@+id/action_see_detail"
+            app:destination="@id/DetailWorkFragment" />
+    </fragment>
     <fragment
         android:id="@+id/UserMainFragment"
         android:name="com.tttn.fragment_user.user_home"
@@ -76,28 +86,77 @@
         android:id="@+id/AdminMainFragment"
         android:name="com.tttn.fragment_admin.home_admin"
         android:label="adminMainFragment">
-<!--        <action-->
-<!--            android:id="@+id/action_mainuser_to_checkinFragment"-->
-<!--            app:destination="@id/checkinFragment" />-->
         <action
             android:id="@+id/action_manager_schedule"
             app:destination="@id/ManagerScheFragment" />
         <action
+            android:id="@+id/action_manager_work"
+            app:destination="@id/ManagerSalaryFragment" />
+        <action
+            android:id="@+id/action_manager_employee"
+            app:destination="@id/ManaEmployeeFragment" />
+        <action
             android:id="@+id/action_back"
             app:destination="@id/login" />
     </fragment>
+
     <fragment
         android:id="@+id/ManagerScheFragment"
         android:name="com.tttn.fragment_admin.ManagerScheduFragment"
         android:label="managerSchedFragment">
-        <!--        <action-->
-        <!--            android:id="@+id/action_mainuser_to_checkinFragment"-->
-        <!--            app:destination="@id/checkinFragment" />-->
-        <!--        <action-->
-        <!--            android:id="@+id/action_schedule"-->
-        <!--            app:destination="@id/scheduleFragment" />-->
         <action
             android:id="@+id/action_back"
             app:destination="@id/AdminMainFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/ManaEmployeeFragment"
+        android:name="com.tttn.fragment_admin.ManagerEmployeeFragment"
+        android:label="managerEmplpyeeFragment">
+        <action
+            android:id="@+id/action_back"
+            app:destination="@id/AdminMainFragment" />
+        <action
+            android:id="@+id/action_to_editemployee"
+            app:destination="@id/EditEmployeeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/DetailWorkFragment"
+        android:name="com.tttn.fragment_admin.WorkDetail"
+        android:label="detailFragment">
+        <action
+            android:id="@+id/action_back"
+            app:destination="@id/ManagerSalaryFragment" />
+        <action
+            android:id="@+id/action_to_payment"
+            app:destination="@id/PaymentFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/PaymentFragment"
+        android:name="com.tttn.fragment_admin.PaymentFragment"
+        android:label="paymentFragment">
+        <action
+            android:id="@+id/action_back"
+            app:destination="@id/DetailWorkFragment" />
+        <action
+            android:id="@+id/action_to_hispayment"
+            app:destination="@id/HisPaymentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/HisPaymentFragment"
+        android:name="com.tttn.fragment_admin.HistPaymentFragment"
+        android:label="histPaymentFragment">
+    </fragment>
+    <fragment
+        android:id="@+id/EditEmployeeFragment"
+        android:name="com.tttn.fragment_admin.EditEmployeeFragment"
+        android:label="editFragment">
+        <action
+            android:id="@+id/action_back"
+            app:destination="@id/ManaEmployeeFragment" />
+        <action
+            android:id="@+id/action_to_hispayment"
+            app:destination="@id/HisPaymentFragment" />
     </fragment>
 </navigation>

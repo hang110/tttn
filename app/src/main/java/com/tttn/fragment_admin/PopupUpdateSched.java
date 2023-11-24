@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,7 +17,7 @@ import com.tttn.model.UserModel;
 
 import java.util.List;
 
-public class tPopupUpdateSched extends DialogFragment {
+public class PopupUpdateSched extends DialogFragment {
 
     private List<UserModel> employeeList;
     private SpinnerAdapter adapter;

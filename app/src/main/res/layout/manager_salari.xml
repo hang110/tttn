@@ -36,11 +36,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/table_data_view"
-        app:tableView_columnCount="10"
+        app:tableView_columnCount="2"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp">
-
     </de.codecrafters.tableview.TableView>
 
 

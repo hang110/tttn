@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.tttn.DataManager_M;
+import com.tttn.DataManager;
 import com.tttn.LichlamCallback;
 import com.tttn.R;
 import com.tttn.UserCallback;
@@ -79,7 +79,7 @@ public class ManagerScheduFragment extends Fragment {
         for(int i = 0; i< models.size(); i++){
 
             String id = models.get(i).getIdUser();
-            DataManager_M.getInstance().getUser(id, new UserCallback() {
+            DataManager.getInstance().getUser(id, new UserCallback() {
                 @Override
                 public void onSuccess(UserModel model, String id) {
                     user.add(model);
@@ -100,7 +100,7 @@ public class ManagerScheduFragment extends Fragment {
         List<LichLamModel> ca1 = new ArrayList<>();
         List<LichLamModel> ca2 = new ArrayList<>();
         List<LichLamModel> ca3 = new ArrayList<>();
-        DataManager_M.getInstance().getAllLichlam(date, new LichlamCallback() {
+        DataManager.getInstance().getAllLichlam(date, new LichlamCallback() {
             @Override
             public void onSuccess(List<LichLamModel> model) {
                 for(int i =0 ;i < model.size(); i++){

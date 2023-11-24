@@ -1,39 +1,20 @@
 package com.tttn.fragment_admin;
 
-import android.media.Image;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CalendarView;
 import android.widget.ImageButton;
-import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.tttn.DataManager_M;
-import com.tttn.LichlamCallback;
 import com.tttn.R;
-import com.tttn.UserCallback;
-import com.tttn.adapter.RecycleviewAdapter_manager_sche;
-import com.tttn.model.LichLamModel;
-import com.tttn.model.UserModel;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
 
 import de.codecrafters.tableview.TableView;
-import de.codecrafters.tableview.toolkit.SimpleTableDataAdapter;
-import de.codecrafters.tableview.toolkit.SimpleTableHeaderAdapter;
 
 public class ManagerSalary extends Fragment {
     private ImageButton back;
@@ -61,7 +42,6 @@ public class ManagerSalary extends Fragment {
                 Navigation.findNavController(view).navigate(action);
             }
         });
-
     }
 
 
