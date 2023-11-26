@@ -1,9 +1,13 @@
 package com.tttn.adapter;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,6 +15,7 @@ import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.tttn.ChamCongCallback;
 import com.tttn.R;
 import com.tttn.fragment_admin.ManagerEmployeeFragmentDirections;
@@ -70,7 +75,30 @@ public class RecycleviewAdapter_detail extends RecyclerView.Adapter<RecyclerView
             else{
                 viewHolder.timeco.setText(model.getTime_CO());
             }
+            viewHolder.timeci.setOnClickListener(new View.OnClickListener() {
+                 @Override
+                  public void onClick(View view) {
+                     showImageDialog(model.getImage_CI(), view.getContext());}
+              });
         }
+    }
+    private void showImageDialog(String imageUrl, Context context) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View dialogView = inflater.inflate(R.layout.dialog_layout, null);
+        ImageView imageViewDialog = dialogView.findViewById(R.id.imageViewDialog);
+        Glide.with(context)
+                .load(imageUrl)
+                .into(imageViewDialog);
+        builder.setView(dialogView);
+        builder.setPositiveButton("Đóng", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
 

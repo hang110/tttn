@@ -39,7 +39,6 @@ public class WorkDetail extends Fragment {
     private ImageButton back;
     private ProgressBar progressBar;
     private TextView name, total_works, total_day;
-    private Button thanhtoan, lichsu;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -61,20 +60,6 @@ public class WorkDetail extends Fragment {
             @Override
             public void onClick(View v) {
                 NavDirections action = WorkDetailDirections.actionBack();
-                Navigation.findNavController(view).navigate(action);
-            }
-        });
-        thanhtoan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavDirections action = WorkDetailDirections.actionToPayment(s,t,idUser);
-                Navigation.findNavController(view).navigate(action);
-            }
-        });
-        lichsu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavDirections action = WorkDetailDirections.actionToHispaymentsss();
                 Navigation.findNavController(view).navigate(action);
             }
         });
@@ -126,8 +111,7 @@ public class WorkDetail extends Fragment {
         name = getView().findViewById(R.id.nameNV2);
         total_day = getView().findViewById(R.id.tongNgay);
         total_works = getView().findViewById(R.id.tongCong2);
-        thanhtoan= getView().findViewById(R.id.thanhToan);
-        lichsu= getView().findViewById(R.id.btnXem);
+
     }
     public String endDate( int month, int year) {
         String eDate="";

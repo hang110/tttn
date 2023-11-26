@@ -120,9 +120,6 @@
         <action
             android:id="@+id/action_to_editemployee"
             app:destination="@id/EditEmployeeFragment" />
-        <action
-            android:id="@+id/action_to_addemployee"
-            app:destination="@id/AddEmployeeFragment" />
     </fragment>
     <fragment
         android:id="@+id/DetailWorkFragment"
@@ -140,39 +137,8 @@
         <action
             android:id="@+id/action_back"
             app:destination="@id/ManagerSalaryFragment" />
-        <action
-            android:id="@+id/action_to_payment"
-            app:destination="@id/PaymentFragment" />
-        <action
-            android:id="@+id/action_to_hispaymentsss"
-            app:destination="@id/HisPaymentFragment" />
+    </fragment>
 
-    </fragment>
-    <fragment
-        android:id="@+id/PaymentFragment"
-        android:name="com.tttn.fragment_admin.PaymentFragment"
-        android:label="paymentFragment">
-        <argument
-            android:name="name"
-            app:argType="string"/>
-        <argument
-            android:name="total"
-            app:argType="string"/>
-        <argument
-            android:name="idU"
-            app:argType="string"/>
-        <action
-            android:id="@+id/action_back"
-            app:destination="@id/DetailWorkFragment" />
-        <action
-            android:id="@+id/action_to_hispayment"
-            app:destination="@id/HisPaymentFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/HisPaymentFragment"
-        android:name="com.tttn.fragment_admin.HistPaymentFragment"
-        android:label="histPaymentFragment">
-    </fragment>
     <fragment
         android:id="@+id/EditEmployeeFragment"
         android:name="com.tttn.fragment_admin.EditEmployeeFragment"
@@ -184,12 +150,5 @@
             android:id="@+id/action_back"
             app:destination="@id/ManaEmployeeFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/AddEmployeeFragment"
-        android:name="com.tttn.fragment_admin.AddEmployeeFragment"
-        android:label="addFragment">
-        <action
-            android:id="@+id/action_back"
-            app:destination="@id/ManaEmployeeFragment" />
-    </fragment>
+
 </navigation>
