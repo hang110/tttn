@@ -22,6 +22,8 @@ import com.tttn.R;
 import com.tttn.model.ChamCongModel;
 
 import java.util.Calendar;
+import java.util.List;
+import java.util.Map;
 
 public class CheckinHisFragment extends Fragment {
     private CalendarView calendarView;
@@ -83,7 +85,7 @@ public class CheckinHisFragment extends Fragment {
     }
 
     private void GetValueChamCong(int year, int month, int dayOfMonth) {
-        String ngay = dayOfMonth + "/" + (month+1) + "/" + year;
+        String ngay = year + "/" + (month+1) + "/" + dayOfMonth;
         DataManager.getInstance().DebugCustom(ngay);
         DataManager.getInstance().getChamCong(DataManager.getInstance().idUser, ngay, new ChamCongCallback() {
             @Override
@@ -101,9 +103,13 @@ public class CheckinHisFragment extends Fragment {
                 }
             }
             @Override
+            public void onSuccessTotal(Map<String, Float> map){}
+            @Override
             public void onFailure(Exception e) {
 
             }
+            @Override
+            public void onSuccessAll(List<ChamCongModel> model){}
         });
     }
 

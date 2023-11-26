@@ -1,59 +1,39 @@
 package com.tttn.adapter;
 
-import android.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContentProviderCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.tttn.DataManager;
 import com.tttn.R;
-import com.tttn.model.LichLamModel;
-import com.tttn.model.UserModel;
+import com.tttn.model.ChamCongModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecycleviewAdapter_manager_sche extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
+public class RecycleviewAdapter_payment extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private static final int VIEW_TYPE_ITEM = 1;
     private static final int VIEW_TYPE_EMPTY = 0;
 
+    private List<ChamCongModel> list;
 
-    private List<UserModel> list;
-    private List<LichLamModel> listLL;
-    private List<String> id;
-
-    public RecycleviewAdapter_manager_sche() {
+    public RecycleviewAdapter_payment() {
         list = new ArrayList<>();
-        id = new ArrayList<>();
-        listLL = new ArrayList<>();
-    }
-    public void refreshData() {
-        notifyDataSetChanged();
     }
 
-    public List<UserModel> getList() {
+    public List<ChamCongModel> getList() {
         return list;
     }
-    public List<String> getListid() {
-        return id;
-    }
 
-    public void setList(List<UserModel> list, List<String> id, List<LichLamModel> listLL) {
+    public void setList(List<ChamCongModel> list) {
         this.list = list;
-        this.id = id;
-        this.listLL = listLL;
         notifyDataSetChanged();
     }
 
-    public UserModel getUser(int position) {
+    public ChamCongModel getChamcong(int position) {
         return list.get(position);
     }
 
@@ -64,21 +44,26 @@ public class RecycleviewAdapter_manager_sche extends RecyclerView.Adapter<Recycl
 
         if (viewType == VIEW_TYPE_EMPTY) {
             View view = inflater.inflate(R.layout.no_data, parent, false);
-            return new EmptyViewHolder(view);
+            return new RecycleviewAdapter_payment.EmptyViewHolder(view);
         } else {
-            View view = inflater.inflate(R.layout.item_manager_schedule, parent, false);
-            return new HomeViewHolder(view);
+            View view = inflater.inflate(R.layout.item_detail, parent, false);
+            return new RecycleviewAdapter_payment.HomeViewHolder(view);
         }
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof HomeViewHolder) {
-            UserModel userModel = list.get(position);
-            LichLamModel lichLamModel = listLL.get(position);
-            String idLich = id.get(position);
-            HomeViewHolder viewHolder = (HomeViewHolder) holder;
-            viewHolder.name.setText(userModel.getName());
+        if (holder instanceof RecycleviewAdapter_payment.HomeViewHolder) {
+            ChamCongModel model = list.get(position);
+            RecycleviewAdapter_payment.HomeViewHolder viewHolder = (RecycleviewAdapter_payment.HomeViewHolder) holder;
+            viewHolder.date.setText(model.getDate());
+            viewHolder.timeci.setText(model.getTime_CI());
+            if(model.getTime_CO().isEmpty() )
+            {
+                viewHolder.timeco.setText("No data");}
+            else{
+                viewHolder.timeco.setText(model.getTime_CO());
+            }
         }
     }
 
@@ -93,12 +78,15 @@ public class RecycleviewAdapter_manager_sche extends RecyclerView.Adapter<Recycl
         return list.isEmpty() ? VIEW_TYPE_EMPTY : VIEW_TYPE_ITEM;
     }
 
+    // ViewHolder for data
     public static class HomeViewHolder extends RecyclerView.ViewHolder {
-        private TextView name;
+        private TextView date, timeci, timeco;
 
         public HomeViewHolder(@NonNull View view) {
             super(view);
-            name = view.findViewById(R.id.nameUser);
+            date = view.findViewById(R.id.date_work);
+            timeci = view.findViewById(R.id.time_CI);
+            timeco = view.findViewById(R.id.time_CO);
         }
     }
 

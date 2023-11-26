@@ -13,7 +13,7 @@
         <ImageButton
             android:layout_width="40dp"
             android:layout_height="48dp"
-            android:id="@+id/backbt"
+            android:id="@+id/backbtMS"
             android:src="@drawable/ic_baseline_arrow_back_ios_24"
             android:background="@color/white"
             android:layout_gravity="center"
@@ -80,48 +80,80 @@
                     android:layout_width='match_parent'
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
+                    <LinearLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:text="Ca sáng: 8:00 - 13:00"
-                        android:textColor="@color/black"
-                        android:textStyle="bold" />
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Ca sáng: 8:00 - 13:00"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/baseline_playlist_add_24"
+                            android:id="@+id/addCa1"
+                            android:backgroundTint="@color/white"/>
+                    </LinearLayout>
+
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/reCa1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
-
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:text="Ca chiều: 12:00 - 18:00"
-                        android:textColor="@color/black"
-                        android:textStyle="bold" />
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Ca chiều: 12:00 - 18:00"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/baseline_playlist_add_24"
+                            android:id="@+id/addCa2"
+                            android:backgroundTint="@color/white"/>
+                    </LinearLayout>
+
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/reCa2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
-                    <TextView
-                        android:layout_width="match_parent"
+                    <LinearLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:text="Ca tối: 18:00 - 23:00"
-                        android:textColor="@color/black"
-                        android:textStyle="bold" />
-
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Ca tối: 18:00 - 23:00"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/baseline_playlist_add_24"
+                            android:id="@+id/addCa3"
+                            android:backgroundTint="@color/white"/>
+                    </LinearLayout>
                     <androidx.recyclerview.widget.RecyclerView
                         android:layout_marginBottom="10dp"
                         android:id="@+id/reCa3"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
 

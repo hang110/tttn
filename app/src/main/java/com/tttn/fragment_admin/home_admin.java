@@ -16,7 +16,7 @@ import androidx.navigation.Navigation;
 
 import com.tttn.R;
 public class home_admin extends Fragment {
-    private ImageButton qlCong, qlLichlam, exit;
+    private ImageButton qlCong, qlLichlam, exit, qlEmpl;
     OnBackPressedCallback callback;
     @Nullable
     @Override
@@ -30,16 +30,25 @@ public class home_admin extends Fragment {
         qlCong= view.findViewById(R.id.qlCong);
         qlLichlam= view.findViewById(R.id.qlLich);
         exit = view.findViewById(R.id.Exit_admin);
+        qlEmpl= view.findViewById(R.id.qlEm);
         qlCong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                NavDirections action = home_adminDirections.actionManagerWork();
+                Navigation.findNavController(view).navigate(action);
             }
         });
         qlLichlam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavDirections action = home_adminDirections.actionManagerSchedule();
+                Navigation.findNavController(view).navigate(action);
+            }
+        });
+        qlEmpl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavDirections action = home_adminDirections.actionManagerEmployee();
                 Navigation.findNavController(view).navigate(action);
             }
         });

@@ -57,9 +57,9 @@ public class ScheduleFragment extends Fragment {
         Calendar eDate = (Calendar) sDate.clone();
         eDate.add(Calendar.DAY_OF_MONTH, 12);
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        String startDate = formatDateString(sDate, dateFormat);
-        String endDate = formatDateString(eDate, dateFormat);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        String startDate = dateFormat.format(sDate.getTime());
+        String endDate = dateFormat.format(eDate.getTime());
         System.out.println(startDate+' '+endDate);
 
         adapter = new RecycleviewAdapter();
@@ -81,7 +81,9 @@ public class ScheduleFragment extends Fragment {
                 recyclerView.setLayoutManager(manager);
                 recyclerView.setAdapter(adapter);
             }
-
+            @Override
+            public void onSuccessGetAll(List<LichLamModel> model, List<String> id) {
+            }
             @Override
             public void onFailure(Exception e) {
 
@@ -109,12 +111,5 @@ public class ScheduleFragment extends Fragment {
         recyclerView= getView().findViewById(R.id.resSchedule);
         flBtn = getView().findViewById(R.id.addBtn);
         back = getView().findViewById(R.id.backbt);
-    }
-    private static String formatDateString(Calendar calendar, SimpleDateFormat dateFormat) {
-        String formattedDate = dateFormat.format(calendar.getTime());
-        if (formattedDate.startsWith("0")) {
-            return formattedDate.substring(1);
-        }
-        return formattedDate;
     }
 }

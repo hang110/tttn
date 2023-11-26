@@ -12,7 +12,7 @@
         <ImageButton
             android:layout_width="40dp"
             android:layout_height="48dp"
-            android:id="@+id/backbt"
+            android:id="@+id/backbtEdit"
             android:src="@drawable/ic_baseline_arrow_back_ios_24"
             android:background="@color/white"
             android:layout_gravity="center"
@@ -112,35 +112,26 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:inputType="number"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="(đồng/giờ)̀"
+                android:text="(nghìn đồng/giờ)̀"
                 android:layout_marginLeft="10dp"
                 />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
+
             <Button
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/btnXem"
-                android:text="Lịch sử lương"
-                android:backgroundTint="@color/purple"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center"
-                />
-            <Button
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/btnTT"
+                android:id="@+id/btnEdit"
                 android:text="Lưu"
                 android:backgroundTint="@color/purple"
-                android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_gravity="center"
                 />

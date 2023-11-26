@@ -66,8 +66,7 @@ public class CreateFragment extends Fragment {
         int year = calendars.get(Calendar.YEAR);
         int month = calendars.get(Calendar.MONTH);
         int day = calendars.get(Calendar.DAY_OF_MONTH);
-        String ngay = ""+day+'/'+(month+1)+'/'+year;
-
+        String ngay = ""+year+'/'+(month+1)+'/'+day;
         Calendar nowDate = Calendar.getInstance();
         nowDate.set(year, month, day);
 
@@ -83,7 +82,12 @@ public class CreateFragment extends Fragment {
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 group.removeAllViews();
                 addRadioButtonsForSelectedDate();
-                String date = ""+ dayOfMonth +'/'+(month+1)+'/'+year;
+                String day = "";
+                day = dayOfMonth + "";
+                if(dayOfMonth < 10){
+                    day = "0"+day;
+                }
+                String date = ""+ year +'/'+(month+1)+'/'+day;
                 selectDate = Calendar.getInstance();
                 selectDate.set(year, month, dayOfMonth);
                 System.out.println(selectDate+" "+startDate+" "+endDate);
@@ -210,6 +214,9 @@ public class CreateFragment extends Fragment {
                 saveRegister(date, caID);
             }
             @Override
+            public void onSuccessGetAll(List<LichLamModel> model, List<String> id) {
+            }
+            @Override
             public void onFailure(Exception e) {
             }
         });
@@ -235,6 +242,6 @@ public class CreateFragment extends Fragment {
         save = getView().findViewById(R.id.save_button);
         back = getView().findViewById(R.id.backbtCre);
         group = getView().findViewById(R.id.radioGroup);
-
     }
+
 }

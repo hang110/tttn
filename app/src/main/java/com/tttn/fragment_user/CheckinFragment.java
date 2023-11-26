@@ -51,6 +51,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.Executors;
 
 public class CheckinFragment extends Fragment {
@@ -112,7 +113,7 @@ public class CheckinFragment extends Fragment {
         Calendar calendar = Calendar.getInstance();
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         Date currentDate = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         SimpleDateFormat dateFormatTime = new SimpleDateFormat("HH:mm:ss");
         formattedTime = dateFormatTime.format(currentDate);
         ngay = dateFormat.format(currentDate);
@@ -121,18 +122,21 @@ public class CheckinFragment extends Fragment {
         for (LichLamModel x: listLichlam) {
             if(x.getWorkday().equals(ngay) && x.getCaID() == 1 && x.getIdUser().equals(idUser)){
                 if(hour>7 && hour <14) {
+                    chamcong.setEnabled(true);
                     isDoneTest = true;
                     ca.setText("Ca sáng 8:00 - 13:00");
                     break;
                 }
             }else if(x.getWorkday().equals(ngay) && x.getCaID() == 2 && x.getIdUser().equals(idUser)){
                 if(hour>12 && hour <19) {
+                    chamcong.setEnabled(true);
                     isDoneTest = true;
                     ca.setText("Ca chiều 13:00 - 18:00");
                     break;
                 }
             }else if(x.getWorkday().equals(ngay) && x.getCaID() == 3 && x.getIdUser().equals(idUser)){
                 if(hour>17) {
+                    chamcong.setEnabled(true);
                     isDoneTest = true;
                     ca.setText("Ca tối 18:00 - 23:00");
                     break;
@@ -255,6 +259,10 @@ public class CheckinFragment extends Fragment {
                         DataManager.getInstance().updateChamCongData(id, _model);
                     }
                 }
+                @Override
+                public void onSuccessAll(List<ChamCongModel> model){}
+                @Override
+                public void onSuccessTotal(Map<String, Float> map){}
                 @Override
                 public void onFailure(Exception e) {
 

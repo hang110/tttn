@@ -1,6 +1,8 @@
 package com.tttn;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -17,6 +19,7 @@ import com.tttn.model.ChamCongModel;
 import com.tttn.model.LichLamModel;
 import com.tttn.model.UserModel;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -108,6 +111,17 @@ public class DataManager {
     {
         db.collection("lichlam").add(model);
     }
+    public void updateLichlam(String documentId,LichLamModel lichLamModel) {
+        DocumentReference docRef = db.collection("lichlam").document(documentId);
+        Map<String, Object> updates = new HashMap<>();
+        updates.put("idUser",lichLamModel.getIdUser());
+        updates.put("caID",lichLamModel.getCaID());
+        updates.put("workday",lichLamModel.getWorkday());
+        docRef.update(updates)
+                .addOnSuccessListener(aVoid -> System.out.println("Cập nhật dữ liệu thành công"))
+                .addOnFailureListener(e -> System.out.println("Lỗi khi cập nhật dữ liệu: " + e.getMessage()));
+    }
+
 
     public void DebugCustom(String msg){
         Log.d(TAG,msg);
@@ -116,8 +130,8 @@ public class DataManager {
     public void getLichlam(String startDate, String endDate, LichlamCallback callback) {
         List<LichLamModel> lmd = new ArrayList<>();
         Query query = db.collection("lichlam").whereEqualTo("idUser", idUser)
-                .whereGreaterThanOrEqualTo("workday", "01/11/2023")
-                .whereLessThanOrEqualTo("workday", "30/12/2023");
+                .whereGreaterThanOrEqualTo("workday", startDate)
+                .whereLessThanOrEqualTo("workday", endDate);
 
         query.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
@@ -185,15 +199,15 @@ public class DataManager {
         });
     }
 
-    public void getUser(UserCallback callback){
+    public void getUserbyID(String id,UserCallback callback){
         UserModel x = new UserModel();
-        db.collection("user").whereEqualTo("idUser", idUser)
+        db.collection("user").document(id)
                 .get().addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        QuerySnapshot querySnapshot = task.getResult();
-                        if (!querySnapshot.isEmpty()) {
-                            UserModel model = querySnapshot.getDocuments().get(0).toObject(UserModel.class);
-                            callback.onSuccess(model, querySnapshot.getDocuments().get(0).getId());
+                        DocumentSnapshot querySnapshot = task.getResult();
+                        if (querySnapshot.exists()) {
+                            UserModel model = querySnapshot.toObject(UserModel.class);
+                            callback.onSuccess(model, id);
                         } else {
                             callback.onSuccess(x,"");
                         }
@@ -204,6 +218,7 @@ public class DataManager {
     }
     public void getAllLichlam(String date, LichlamCallback callback) {
         List<LichLamModel> lmd = new ArrayList<>();
+        List<String> id = new ArrayList<>();
         Query query = db.collection("lichlam")
                 .whereEqualTo("workday", date);
         query.get().addOnCompleteListener(task -> {
@@ -214,11 +229,12 @@ public class DataManager {
                         LichLamModel model = document.toObject(LichLamModel.class);
                         DebugCustom(model.getWorkday());
                         lmd.add(model);
+                        id.add( querySnapshot.getDocuments().get(0).getId());
                     }
-                    callback.onSuccess(lmd);
+                    callback.onSuccessGetAll(lmd,id);
                 } else {
 
-                    callback.onSuccess(lmd);
+                    callback.onSuccessGetAll(lmd,id);
                 }
             } else {
                 // Xử lý lỗi
@@ -243,5 +259,119 @@ public class DataManager {
                         callback.onFailure(task.getException());
                     }
                 });
+    }
+    public void GetAllEmployee(UserCallback callback){
+        List<UserModel> x = new ArrayList<>();
+        List<String > id = new ArrayList<>();
+        List<String> name = new ArrayList<>();
+        List<String> idU = new ArrayList<>();
+        db.collection("user").get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                QuerySnapshot querySnapshot = task.getResult();
+                if (!querySnapshot.isEmpty()) {
+                    int index=0;
+                    for (QueryDocumentSnapshot document : querySnapshot) {
+                        UserModel model = document.toObject(UserModel.class);
+                        x.add(model);
+                        id.add(querySnapshot.getDocuments().get(index).getId());
+                        name.add(model.getName());
+                        idU.add(model.getIdUser());
+                        index++;
+                    }
+                    callback.onSuccessGetList(x, id);
+                    callback.onSuccessGetName(name, idU);
+                } else {
+                    callback.onSuccessGetList(x,id);
+                    callback.onSuccessGetName(name, idU);
+                }
+            } else {
+                callback.onFailure(task.getException());
+            }
+        });
+    }
+
+    public void GetChamCongtheothang(String startDate, String endDate, ChamCongCallback chamCongCallback){
+        Map<String , Float> map= new HashMap<>();
+        Query query = db.collection("chamcong")
+                .whereGreaterThanOrEqualTo("date", startDate)
+                .whereLessThanOrEqualTo("date", endDate);
+        query.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                QuerySnapshot querySnapshot = task.getResult();
+                if (!querySnapshot.isEmpty()) {
+                    for (QueryDocumentSnapshot document : querySnapshot) {
+                        ChamCongModel model = document.toObject(ChamCongModel.class);
+                        if (map.containsKey(model.getIdUser())) {
+                            float gio = 0;
+                            if (model.getTime_CO().isEmpty()) {
+                                gio = 5;
+                            } else {
+                                String[] splipCI = model.getTime_CI().split(":");
+                                String[] splipCO = model.getTime_CO().split(":");
+                                float timeSeconds = - Integer.parseInt(splipCI[0]) * 3600 + Integer.parseInt(splipCI[1]) * 60 + Integer.parseInt(splipCI[2])
+                                        + Integer.parseInt(splipCO[0]) * 3600 + Integer.parseInt(splipCO[1]) * 60 + Integer.parseInt(splipCO[2]);
+                                gio = timeSeconds / 3600;
+                            }
+                            float value = map.get(model.getIdUser()) + gio;
+                            map.put(model.getIdUser(), value);
+                        } else {
+                            float gio = 0;
+                            if (model.getTime_CO().isEmpty()) {
+                                gio = 5;
+                            } else {
+                                String[] splipCI = model.getTime_CI().split(":");
+                                String[] splipCO = model.getTime_CO().split(":");
+                                float timeSeconds = - Integer.parseInt(splipCI[0]) * 3600 + Integer.parseInt(splipCI[1]) * 60 + Integer.parseInt(splipCI[2])
+                                        + Integer.parseInt(splipCO[0]) * 3600 + Integer.parseInt(splipCO[1]) * 60 + Integer.parseInt(splipCO[2]);
+                                gio = timeSeconds / 3600;
+                            }
+                            map.put(model.getIdUser(), gio);
+                        }
+
+                    } chamCongCallback.onSuccessTotal(map);
+                }else {
+                    chamCongCallback.onSuccessTotal(map);
+                }
+            } else {
+            // Xử lý lỗi
+            chamCongCallback.onFailure(task.getException());
+        }
+        });
+    }
+    public void updateUser(String documentId, UserModel user, Context context) {
+        DocumentReference docRef = db.collection("user").document(documentId);
+        Map<String, Object> updates = new HashMap<>();
+        updates.put("name", user.getName());
+        updates.put("address", user.getAddress());
+        updates.put("idUser", user.getIdUser());
+        updates.put("luong", user.getLuong());
+        updates.put("tele", user.getTele());
+        docRef.update(updates)
+                .addOnSuccessListener(aVoid -> Toast.makeText(context, "Cập nhật thông tin nhân viên thành công", Toast.LENGTH_LONG).show())
+                .addOnFailureListener(e -> Toast.makeText(context, "Lỗi khi cập nhật dữ liệu: " + e.getMessage(), Toast.LENGTH_LONG).show());
+    }
+
+    public void getChamCongofUser(String startDate, String endDate, String idU ,ChamCongCallback callback) {
+        List<ChamCongModel> lmd = new ArrayList<>();
+        Query query = db.collection("chamcong").whereEqualTo("idUser", idU)
+                .whereGreaterThanOrEqualTo("date", startDate)
+                .whereLessThanOrEqualTo("date", endDate);
+        query.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                QuerySnapshot querySnapshot = task.getResult();
+                if (!querySnapshot.isEmpty()) {
+                    for (QueryDocumentSnapshot document : querySnapshot) {
+                        ChamCongModel model = document.toObject(ChamCongModel.class);
+                        lmd.add(model);
+                    }
+                    callback.onSuccessAll(lmd);
+                } else {
+                    callback.onSuccessAll(lmd);
+                }
+            } else {
+                // Xử lý lỗi
+                callback.onFailure(task.getException());
+            }
+        });
     }
 }

@@ -1,14 +1,12 @@
 package com.tttn.fragment_admin;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,19 +14,16 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.tttn.DataManager;
 import com.tttn.R;
 import com.tttn.UserCallback;
-import com.tttn.adapter.RecycleviewAdapter_employee;
 import com.tttn.model.UserModel;
 
 import java.util.List;
 
-public class EditEmployeeFragment extends Fragment {
-    private EditText ten, sdt, dchi, lcb;
+public class AddEmployeeFragment extends Fragment {
+    private EditText ten, sdt, dchi, lcb, email;
     private ImageButton back;
     private Button luu;
     private String idUser="";
@@ -110,12 +105,13 @@ public class EditEmployeeFragment extends Fragment {
     }
 
     private void Init(){
-        ten = getView().findViewById(R.id.enameNV);
-        sdt = getView().findViewById(R.id.eSDT);
-        dchi = getView().findViewById(R.id.ediachi);
-        lcb = getView().findViewById(R.id.eluong);
-        back = getView().findViewById(R.id.backbtEdit);
-        luu = getView().findViewById(R.id.btnEdit);
+        ten = getView().findViewById(R.id.addnameNV);
+        sdt = getView().findViewById(R.id.addSDT);
+        dchi = getView().findViewById(R.id.adddiachi);
+        email = getView().findViewById(R.id.addEmail);
+        lcb = getView().findViewById(R.id.addluong);
+        back = getView().findViewById(R.id.backbtAdd);
+        luu = getView().findViewById(R.id.btnAdd);
     }
 }
 

@@ -71,11 +71,13 @@ public class login_fragment  extends Fragment {
                     Toast.makeText(requireContext(),"Please enter your password", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                System.out.println("ffffffffffffff");
                 mAuth.signInWithEmailAndPassword(eusername, epass)
                         .addOnCompleteListener(requireActivity(), new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
+                                    System.out.println("ffffffffffffff");
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     Toast.makeText(requireContext(), "Đăng nhập thành công",
                                             Toast.LENGTH_SHORT).show();
@@ -91,6 +93,7 @@ public class login_fragment  extends Fragment {
                                         Navigation.findNavController(view).navigate(action);
                                     }
                                 } else {
+                                    System.out.println("ỵhgkjgh");
                                     Toast.makeText(requireContext(), "Đăng nhập không thành công, vui lòng kiểm tra lại email, password",
                                             Toast.LENGTH_SHORT).show();
                                 }
